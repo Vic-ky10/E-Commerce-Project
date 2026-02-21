@@ -2,13 +2,20 @@ import axios from "axios";
 import { Header } from "../components/Header";
 import "./homePage.css";
 
-import { products } from "../../ecommerce-project-main/data/products";
+import { useEffect, useState } from "react";
 
 function HomePage() {
-  axios.get("http://localhost:3000/api/products") // axios is the cleaner way to make requese to the backend
-  .then((response) => {
-    console.log(response.data);
-  });
+
+  const [products , setProducts] = useState([]);
+  useEffect(() => {
+    // useEffect = let us control when some code runs
+
+    axios
+      .get("http://localhost:3000/api/products") // axios is the cleaner way to make requese to the backend
+      .then((response) => {
+       setProducts(response.data);
+      });
+  }, []);
 
   return (
     <>
