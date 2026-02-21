@@ -4,6 +4,12 @@ import "./homePage.css";
 import { products } from "../../ecommerce-project-main/data/products";
 
 function HomePage() {
+  fetch("http://localhost:3000/api/products").then((Response) => {
+    Response.json().then((data) => {
+      console.log(data);
+    });
+  });
+
   return (
     <>
       <title>Ecommerce Project</title>
@@ -15,7 +21,7 @@ function HomePage() {
           {products.map((product) => {
             return (
               <>
-                <div className="product-container">
+                <div key={product.id} className="product-container">
                   <div className="product-image-container">
                     <img className="product-image" src={product.image} />
                   </div>
